@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Simple DB</string>
+    <string name="city">city</string>
+    <string name="temp">temp</string>
+    <string name="menu_add">Add</string>
+    <string name="menu_clear">Clear</string>
+    <string name="menu_edit">edit</string>
+    <string name="menu_delete">delete</string>
+    <string name="alert_cancel">Cancel</string>
+    <string name="alert_title_add">Add note</string>
+    <string name="view">text</string>
+</resources>
