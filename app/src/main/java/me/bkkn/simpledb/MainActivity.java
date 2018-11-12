@@ -104,12 +104,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void editElement(DataItem dataItem) {
-        weatherDataSource.editNote(dataItem, "Edited", "Edited title");
+        // Выведем диалоговое окно для ввода новой записи
+        final LayoutInflater[] factory = {LayoutInflater.from(this)};
+        // alertView пригодится в дальнейшем для поиска пользовательских элементов
+        final View alertView = factory[0].inflate(R.layout.layout_add_weather, null);
+        final String[] newCity = new String[1];
+        final String[] newTemp = new String[1];
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(alertView);
+        builder.setTitle(R.string.alert_title_edit);
+        builder.setNegativeButton(R.string.alert_cancel, null);
+        builder.setPositiveButton(R.string.menu_add, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                EditText editTextTemp = alertView.findViewById(R.id.et_temp);
+                EditText editTextCity = alertView.findViewById(R.id.et_city);
+                // если использовать findViewById без alertView, то всегда будем получать
+                // editText = null
+                newCity[0] = editTextCity.getText().toString();
+                newTemp[0] = editTextTemp.getText().toString();
+                weatherDataSource.addDataItem(newCity[0], newTemp[0]);
+                dataUpdated();
+            }
+        });
+        builder.show();
+        weatherDataSource.editEntry(dataItem, newTemp[0], newCity[0]);
         dataUpdated();
     }
 
     private void deleteElement(DataItem dataItem) {
-        weatherDataSource.deleteNote(dataItem);
+        weatherDataSource.deleteEntry(dataItem);
         dataUpdated();
     }
 

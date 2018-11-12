@@ -49,20 +49,20 @@ public class WeatherDataSource implements Closeable {
     }
 
     // Изменить запись
-    public void editNote(DataItem dataItem, String temp, String city) {
-        ContentValues editedNote = new ContentValues();
-        editedNote.put(DatabaseHelper.COLUMN_ID, dataItem.getId());
-        editedNote.put(DatabaseHelper.COLUMN_TEMP, temp);
-        editedNote.put(DatabaseHelper.COLUMN_CITY, city);
+    public void editEntry(DataItem dataItem, String temp, String city) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHelper.COLUMN_ID, dataItem.getId());
+        values.put(DatabaseHelper.COLUMN_TEMP, temp);
+        values.put(DatabaseHelper.COLUMN_CITY, city);
         // изменение записи
         database.update(DatabaseHelper.TABLE_WEATHER,
-                editedNote,
+                values,
                 DatabaseHelper.COLUMN_ID + " = " + dataItem.getId(),
                 null);
     }
 
     // Удалить запись
-    public void deleteNote(DataItem dataItem) {
+    public void deleteEntry(DataItem dataItem) {
         long id = dataItem.getId();
         database.delete(DatabaseHelper.TABLE_WEATHER, DatabaseHelper.COLUMN_ID
                 + " = " + id, null);
