@@ -8,5 +8,6 @@
     <string name="menu_delete">delete</string>
     <string name="alert_cancel">Cancel</string>
     <string name="alert_title_add">Add note</string>
-    <string name="view">text</string>
+    <string name="view_city">moscow</string>
+    <string name="view_temp">18</string>
 </resources>

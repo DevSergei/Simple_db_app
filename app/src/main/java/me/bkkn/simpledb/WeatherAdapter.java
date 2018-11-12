@@ -58,26 +58,37 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView etWeatherItem;
+        private final TextView etCity;
+        private final TextView etTemp;
         private DataItem dataItem;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            etWeatherItem = itemView.findViewById(R.id.textTitle);
+            etCity = itemView.findViewById(R.id.city_title);
+            etTemp = itemView.findViewById(R.id.temp_title);
 
             // при тапе на элементе - покажем  меню
-            etWeatherItem.setOnClickListener(new View.OnClickListener() {
+            etCity.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (itemMenuClickListener != null)
-                        showPopupMenu(etWeatherItem);
+                        showPopupMenu(etCity);
+                }
+            });
+            // при тапе на элементе - покажем  меню
+            etTemp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (itemMenuClickListener != null)
+                        showPopupMenu(etTemp);
                 }
             });
         }
 
         public void bind(DataItem dataItem) {
             this.dataItem = dataItem;
-            etWeatherItem.setText(dataItem.getTemp());
+            etCity.setText(dataItem.getCity());
+            etTemp.setText(dataItem.getTemp());
         }
 
         private void showPopupMenu(View view) {
